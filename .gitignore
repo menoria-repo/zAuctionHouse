@@ -3,7 +3,9 @@
 target/
 target-api/
 personal.properties
+bin/
 
+.vscode/
 *.iml
 *.ipr
 *.iws

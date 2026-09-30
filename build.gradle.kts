@@ -87,6 +87,14 @@ dependencies {
     api(projects.api)
     api(projects.hooks)
     implementation("dev.faststats.metrics:bukkit:0.29.4")
+
+    // fork: ShadowCore / ShadowClan, provided by the server
+    compileOnly(files(
+        "libs/shadowcore-api.jar",
+        "libs/shadowcore-core.jar",
+        "libs/shadowcore-paper.jar",
+        "libs/shadow-clan.jar",
+    ))
 }
 
 tasks {

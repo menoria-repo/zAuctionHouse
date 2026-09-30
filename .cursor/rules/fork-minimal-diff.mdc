@@ -1,0 +1,35 @@
+---
+description: Keep every change small and merge-friendly because this repo is a fork of upstream zAuctionHouse
+alwaysApply: true
+---
+
+# Fork: minimal upstream conflict
+
+This repository is a fork. Upstream updates must still merge cleanly. Every edit is a patch on someone else's code.
+
+## Do
+
+- Change only the lines required for the task.
+- Match the surrounding style, names, and structure, even when a cleaner design exists.
+- Prefer a local fix inside the existing method or class over a new abstraction.
+- Keep fork-only behavior in the smallest possible place, and mark it with a short comment such as `// fork:` so a later merge can find it.
+- Leave unrelated formatting, imports, comments, and file order untouched.
+
+## Do not
+
+- Reformat, rename, move, or reorder code that the task does not require.
+- Widen a fix into a refactor, API change, or new layer.
+- Touch generated output, build artifacts, or resource files that are not part of the change.
+- Replace an upstream pattern with a different one when the existing pattern still works.
+
+```java
+// Bad: rename + extract while fixing a null check
+public Optional<Item> findListedItem(UUID id) { ... }
+
+// Good: same method, same name, one guarded return
+if (item == null) { // fork: skip missing listings during upstream sync
+    return;
+}
+```
+
+If a larger change is the only correct fix, say so before editing and keep the diff as close to upstream as possible.
